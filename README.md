@@ -34,10 +34,11 @@ dove il numeratore indica l'odds (rapporto tra la probabilità *p* di un evento 
 ### Procedimento
 Dopo aver calcolato i Community Smells all'interno del dataset di progetti ML-enabled "datasetProgetti.xlsx" (grazie al tool open-source CSDetector), sono stati salvati i risultati nel dataset "communitySmellsDataset.xlsx". Per poter riuscire ad applicare il modello statistico a questo dataset è necessario seguire con precisione i seguenti step:
 1. Effettuare il download della repository;
-2. Aprire il prompt dei comandi (sia su Mac che su Windows);
-3. Posizionarsi sulla cartella appena scaricata (dopo aver estratto i file dal .zip)
-4. Eseguire il comando *py -3.8 correlationDetection.py*;
-5. Inserire da tastiera gli acronimi dei Community Smells cosi come viene chiesto dallo script (gli acronimi devono essere in caps lock e devono corrispondere a come vengono salvati nel dataset "communitySmellsDataset.xlsx".
+2. Assicurarsi di avere nella stessa cartella il file "communitySmellsDataset.xlsx" e lo script *correlationDetection.py* (altrimenti non funzions)
+3. Aprire il prompt dei comandi (sia su Mac che su Windows);
+4. Posizionarsi sulla cartella appena scaricata (dopo aver estratto i file dal .zip e posizionato i file nella stessa cartella)
+5. Eseguire il comando *py -3.8 correlationDetection.py*;
+6. Inserire da tastiera gli acronimi dei Community Smells cosi come viene chiesto dallo script (gli acronimi devono essere in caps lock e devono corrispondere a come vengono salvati nel dataset "communitySmellsDataset.xlsx".
 
 Se gli step sono stati eseguiti nel modo giusto e non sono stati riscontrati errori, allora lo script calcolerà i valori di *Relative Risk* e *Odds Ratio* in maniera corretta. 
 
