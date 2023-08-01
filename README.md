@@ -1,8 +1,8 @@
-# Analisi-dei-Community-Smells-in-progetti-ML-enabled-e-correlazioni-tra-di-essi_ReplicationPackage
+# Analisi-dei-CS-in-progetti-ML-enabled-e-correlazioni-tra-di-essi_ReplicationPackage
 Tesi di ricerca realizzata in collaborazione con il SeSaLab.
 
 ## Obiettivi
-L'obiettivo della tesi è di identificare i Community Smells all'interno di progetti ML-enabled, utilizzando CSDetector (riadattando quello li già realizzato da [Gianmario Voria](https://github.com/gianwario) e da [Nuri Almarimi](https://github.com/Nuri22)). Poi, i dati prodotti dal tool, verranno utilizzati su un modello statistico (denominato *cross-sectional*), che, attraverso delle metriche di correlazione (*Relative Risk* e *Odds Ratio*), stabilisce il tipo di correlazione tra coppie di Community Smells. 
+L'obiettivo della tesi è di identificare i Community Smells (CS) all'interno di progetti ML-enabled (cioé progetti con all'interno algoritmi di Machine Learning), utilizzando CSDetector (riadattando quello li già realizzato da [Gianmario Voria](https://github.com/gianwario) e da [Nuri Almarimi](https://github.com/Nuri22)). Poi, i dati prodotti dal tool, verranno utilizzati su un modello statistico (denominato *cross-sectional*), che, attraverso delle metriche di correlazione (*Relative Risk* e *Odds Ratio*), stabilisce il tipo di correlazione tra coppie di Community Smells. 
 
 ## Modello cross-sectional
 il modello *cross-sectional* è un modello statistico in cui si raccolgono dati da molti individui diversi in un punto nel tempo. Esso risulta essere un modello semplice ed economico per la raccolta dei dati e l'identificazione di correlazioni. Inoltre, consente solo di descrivere una variabile e non misurarla. Le metriche di correlazione che sono state utilizzate sono il *Relative Risk* e l'*Odds Ratio*. Di seguito vengono descritte nel dettaglio.
@@ -31,21 +31,25 @@ dove il numeratore indica l'odds (rapporto tra la probabilità *p* di un evento 
 <code>OR > 1</code>, il fattore in esame può essere implicato nella comparsa della malattia (fattore di rischio);
 
 <code>OR < 1</code>, il fattore in esame è una difesa contro la malattia (fattore protettivo).
-### Procedimento
-Dopo aver calcolato i Community Smells all'interno del dataset di progetti ML-enabled "datasetProgetti.xlsx" (grazie al tool open-source CSDetector), sono stati salvati i risultati nel dataset "communitySmellsDataset.xlsx". Per poter riuscire ad applicare il modello statistico a questo dataset è necessario seguire con precisione i seguenti step:
-1. Effettuare il download della repository;
-2. Assicurarsi di avere nella stessa cartella il file "communitySmellsDataset.xlsx" e lo script *correlationDetection.py* (altrimenti non funzions)
-3. Aprire il prompt dei comandi (sia su Mac che su Windows);
-4. Posizionarsi sulla cartella appena scaricata (dopo aver estratto i file dal .zip e posizionato i file nella stessa cartella)
-5. Eseguire il comando *py -3.8 correlationDetection.py*;
-6. Inserire da tastiera gli acronimi dei Community Smells cosi come viene chiesto dallo script (gli acronimi devono essere in caps lock e devono corrispondere a come vengono salvati nel dataset "communitySmellsDataset.xlsx".
+
+
+
+## Procedimento
+Dopo aver calcolato i Community Smells all'interno del dataset di progetti ML-enabled "datasetProgetti.xlsx" (grazie al tool open-source CSDetector), sono stati salvati i risultati nel dataset "communitySmellsDataset.xlsx". Per poter riuscire ad applicare il modello statistico a questo dataset è necessario seguire, con precisione, i seguenti step:
+1. Installare la versione di Python 3.8.3;
+2. Effettuare il download della repository;
+3. Assicurarsi di avere nella stessa cartella il file "communitySmellsDataset.xlsx" e lo script *correlationDetection.py* (altrimenti non funziona)
+4. Aprire il prompt dei comandi (sia su Mac che su Windows);
+5. Posizionarsi sulla cartella appena scaricata (dopo aver estratto i file dal .zip e posizionato i file nella stessa cartella)
+6. Eseguire il comando *py -3.8 correlationDetection.py*;
+7. Inserire da tastiera gli acronimi dei Community Smells cosi come viene chiesto dallo script (gli acronimi devono essere in maiuscolo e devono corrispondere a come sono salvati nel dataset "communitySmellsDataset.xlsx".
 
 Se gli step sono stati eseguiti nel modo giusto e non sono stati riscontrati errori, allora lo script calcolerà i valori di *Relative Risk* e *Odds Ratio* in maniera corretta. 
 
-### Risultati
+## Risultati
 Dopo aver calcolato, per ogni coppia di smell (senza ripetizioni), i valori di *Relative Risk* e *Odds Ratio*, questi sono stati salvati nel dataset "correlationCSDataset.xlsx". Poi, ho realizzato due tabelle in formato excel, che permettono di visualizzare, in maniera grafica, i risultati ottenuti e renderli più comprensibili. Le tabelle sono delle matrici diagonali, aventi entrambe le stesse regole, elencate di seguito:
 * <code>Valore della cella = 1</code>, la cella assume un colore grigio;
 * <code>Valore della cella > 1</code>, la cella passa dal colore grigio, al colore verde indicando, in questo modo, che sono positivamente correlate;
 * <code>Valore della cella < 1 </code>, la cella passa dal colore grigio al colore rosso indicando, in questo modo, che sono negativamente correlate.
 
-Le due matrici diagonali sono state denominate "relativeRiskMatrix.xlsx" e "oddsRatioMatrix.xlsx" e si possono visualizzare nella cartella matrix di questa repository. Rappresentano rispettivamente i valori di *Relative Risk* e *Odds Ratio*, per ogni coppia di smell. Osservando le due matrici, quello che si può dedurre è che i valori di *Relative Risk* e *Odds Ratio*, indicano più o meno le stesse informazioni per ogni coppia. Una delle coppie più interessanti è la coppia <code>BCE/RS</code>. Come possiamo vedere dai grafici, il valore del *Relative Risk* è uguale a 10.6 e quello dell'*Odds Ratio* è uguale a 31.6 ed entrambe le celle sono colorate di un verde molto scuro, poiché sono molto distanti dal punto di centro che è il valore 1. Da ciò si può dedurre che i due smell sono fortemente correlati in maniera positiva, cioé la presenza dello smell BCE, implica molto spesso la presenza anche di RS.
+Le due matrici diagonali sono state denominate "relativeRiskMatrix.xlsx" e "oddsRatioMatrix.xlsx" e si possono visualizzare nella cartella matrix di questa repository. Rappresentano rispettivamente i valori di *Relative Risk* e *Odds Ratio*, per ogni coppia di smell. Osservando le due matrici, quello che si può dedurre è che i valori di *Relative Risk* e *Odds Ratio*, indicano più o meno le stesse informazioni per ogni coppia. Una delle coppie più interessanti è la coppia <code>BCE/RS</code>. Infatti, Il valore del *Relative Risk* è uguale a 10.6 e quello dell'*Odds Ratio* è uguale a 31.6 e, nei grafici, entrambe le celle sono colorate di un verde molto scuro, poiché sono molto distanti dal punto di centro che è il valore 1. Da ciò si può dedurre che i due smell sono fortemente correlati in maniera positiva, cioé la presenza dello smell BCE (*Black-Cloud Effect*), implica molto spesso la presenza anche di RS (*Radio Silence*).
